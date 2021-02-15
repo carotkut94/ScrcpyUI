@@ -66,7 +66,7 @@ fun ExecutionFrame(
                                 p!!.destroy()
                             }
                             p = Runtime.getRuntime()
-                                .exec("scrscpy -s ${deviceOptions[selectedDevice].productId} --max-fps ${selectedFps.toInt()} ${topComputedCommand.value} -m${resolutionItems[selectedResolutionIndex]}")
+                                .exec("sckjrcpy -s ${deviceOptions[selectedDevice].productId} --max-fps ${selectedFps.toInt()} ${topComputedCommand.value} -m${resolutionItems[selectedResolutionIndex]}")
                             minimise()
                             notifier.notify("Alert", "scrcpy started")
                         } catch (e: Exception) {
