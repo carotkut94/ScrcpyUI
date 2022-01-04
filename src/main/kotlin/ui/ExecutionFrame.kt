@@ -1,5 +1,3 @@
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -9,7 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Notifier
+//import androidx.compose.ui.window.Notifier
 import ui.*
 
 @Composable
@@ -22,11 +20,9 @@ fun ExecutionFrame(
     val (isAlwaysOnTop, changeWindowMode) =  remember { mutableStateOf(false) }
     val (canRunMultipleInstance, changeRunMode) =  remember { mutableStateOf(false) }
 
-
-
     val topCommand = "--always-on-top"
 
-    val notifier = Notifier()
+    //val notifier = Notifier()
     val topComputedCommand = derivedStateOf { if(isAlwaysOnTop) topCommand else "" }
     val (selectedResolutionIndex, setResolutionIndex) = remember{ mutableStateOf(0) }
 
@@ -68,13 +64,13 @@ fun ExecutionFrame(
                             p = Runtime.getRuntime()
                                 .exec("scrcpy -s ${deviceOptions[selectedDevice].productId} --max-fps ${selectedFps.toInt()} ${topComputedCommand.value} -m${resolutionItems[selectedResolutionIndex]}")
                             minimise()
-                            notifier.notify("Alert", "scrcpy started")
+                            //notifier.notify("Alert", "scrcpy started")
                         } catch (e: Exception) {
                             e.printStackTrace()
                             setShowDialog(true)
                         }
                     }else{
-                        notifier.notify("Alert", "No Devices Connected")
+                        //notifier.notify("Alert", "No Devices Connected")
                     }
                 }, modifier = Modifier.padding(16.dp).fillMaxWidth()) {
                 Text(if(deviceOptions.isEmpty()) "No Devices" else "Start")

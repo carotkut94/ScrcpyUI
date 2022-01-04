@@ -1,5 +1,5 @@
-import androidx.compose.desktop.AppManager
-import androidx.compose.desktop.ComposePanel
+
+import androidx.compose.ui.awt.ComposePanel
 import java.awt.Frame
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -12,11 +12,6 @@ fun main() {
     val reader = BufferedReader(InputStreamReader(commandExecutor.inputStream))
     val devices = mutableListOf<MobileDevice>()
     // explicitly clear the application events
-    AppManager.setEvents(
-        onAppStart = null,
-        onAppExit = null,
-        onWindowsEmpty = null
-    )
     reader.forEachLine { output ->
         if (output.contains("product")) {
             val commandOutPut = output.split(" ").toMutableList()

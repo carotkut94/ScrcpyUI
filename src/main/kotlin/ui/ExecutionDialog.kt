@@ -2,11 +2,13 @@ package ui
 
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import java.awt.Desktop
 import java.net.URI
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ExecutableNotFoundDialog(showDialog: Boolean, setShowDialog: (Boolean) -> Unit) {
     if (showDialog) {

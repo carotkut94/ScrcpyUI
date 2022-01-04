@@ -3,8 +3,8 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.5.21"
-    id("org.jetbrains.compose") version "0.5.0-build262"
+    kotlin("jvm") version "1.6.10"
+    id("org.jetbrains.compose") version "1.0.1-rc2"
 }
 
 group = "me.deathcode"
@@ -18,8 +18,8 @@ repositories {
 
 dependencies {
     implementation(compose.desktop.currentOs)
-    implementation("com.lordcodes.turtle:turtle:0.2.0")
-    implementation("net.samuelcampos:usbdrivedetector:2.0.4")
+    implementation("com.lordcodes.turtle:turtle:0.6.0")
+    implementation("net.samuelcampos:usbdrivedetector:2.1.1")
 
 
 }
