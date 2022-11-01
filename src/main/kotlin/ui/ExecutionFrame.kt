@@ -37,9 +37,8 @@ fun ExecutionFrame(
 
     Box{
         Column(
-            modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Bottom
+            verticalArrangement = Arrangement.Top
         ) {
             
             DevicesRow(deviceOptions, selectedDevice, setShowDeviceMenu, showDeviceMenu, setSelectedDevice)

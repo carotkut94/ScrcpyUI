@@ -1,12 +1,23 @@
-
 import androidx.compose.ui.awt.ComposePanel
+import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Window
+import androidx.compose.ui.window.WindowState
+import androidx.compose.ui.window.application
+import androidx.compose.ui.window.singleWindowApplication
 import java.awt.Frame
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import javax.swing.JFrame
 import javax.swing.SwingUtilities
+import kotlin.system.exitProcess
 
-fun main() {
+fun main() = singleWindowApplication(
+    title = "Scrcpy GUI",
+    exitProcessOnExit = true,
+    resizable = true,
+    state = WindowState(size = DpSize(300.dp, 500.dp))
+) {
 
     val commandExecutor = Runtime.getRuntime().exec("adb devices -l")
     val reader = BufferedReader(InputStreamReader(commandExecutor.inputStream))
@@ -24,22 +35,8 @@ fun main() {
             )
         }
     }
-
-    val window = JFrame()
-    SwingUtilities.invokeLater {
-        val composeView = ComposePanel()
-        with(window) {
-            isResizable = false
-            title = "Scrcpy Compose"
-            contentPane.add(composeView)
-            composeView.setContent {
-                ExecutionFrame(devices) {
-                    window.state = Frame.ICONIFIED
-                }
-            }
-            setSize(300, 600)
-            isVisible = true
-        }
+    ExecutionFrame(devices) {
+        window.state = Frame.ICONIFIED
     }
 }
 
