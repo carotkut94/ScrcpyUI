@@ -24,9 +24,13 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-    - name: Publish Executables
-      run: ./gradlew createDistributable
-    - uses: actions/upload-artifact@v2
+    - name: Build MacBuild
+      uses: gradle/gradle-build-action@v2.4.0 
       with:
-        name: release
-        path: /home/runner/work/ScrcpyUI/ScrcpyUI/build/compose/binaries/main/app 
+        arguments: "createDistributable"
+    - name: Upload artifacts
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          build/compose/binaries/main/app/*
